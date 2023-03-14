@@ -1,6 +1,4 @@
-import 'package:app/presentation/views/home/home_page/home_page.dart';
 import 'package:flutter/material.dart';
-
 import 'utilities/routes/app_router.dart';
 
 void main() {
