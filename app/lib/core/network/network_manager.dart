@@ -1,5 +1,3 @@
-import 'package:app/core/model/base_model.dart';
-import 'package:app/core/model/i_base_model.dart';
 import 'package:dio/dio.dart';
 
 class NetworkManager {
@@ -10,23 +8,6 @@ class NetworkManager {
 
   NetworkManager._() {
     _dio = Dio(_myBaseOptions());
-  }
-
-  Future<T> request<T extends IBaseModel>(String path, dynamic data, T responseModel) async {
-    try {
-      final responseData = await _dio.request(path, data: data);
-      switch (responseData.data) {
-        case Map:
-          return responseModel.fromJson(responseData.data) as T;
-        case List:
-          return responseModel.fromJsonList(responseData.data) as T;
-
-        default:
-          throw Exception("Invalid response type");
-      }
-    } on DioError {
-      rethrow;
-    }
   }
 
   Future<Response> post(String path, dynamic data) async {
