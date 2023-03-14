@@ -1,16 +1,21 @@
+import 'package:app/presentation/views/home/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 
+import 'utilities/routes/app_router.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
-  // This widget is the root of your application.
+  final _appRouter = AppRouter();
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerDelegate: _appRouter.delegate(),
+      routeInformationParser: _appRouter.defaultRouteParser(),
       title: 'Flutter Assignment',
       theme: ThemeData(
         primarySwatch: Colors.blue,
