@@ -1,14 +1,27 @@
+import 'package:app/config/env.dart';
 import 'package:dio/dio.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class NetworkManager {
-  final String _baseUrl = "";
+  final String _baseUrl = Env.baseUrl;
 
   Dio get service => _dio;
   late final Dio _dio;
 
-  NetworkManager._() {
+  NetworkManager() {
     _dio = Dio(_myBaseOptions());
+    _dio.interceptors.add(_prettyDioLogger);
   }
+
+  static const int _maxLineWidth = 90;
+  final PrettyDioLogger _prettyDioLogger = PrettyDioLogger(
+      requestHeader: true,
+      requestBody: false,
+      responseBody: true,
+      responseHeader: false,
+      error: true,
+      compact: true,
+      maxWidth: _maxLineWidth);
 
   Future<Response> post(String path, dynamic data) async {
     try {
@@ -53,5 +66,10 @@ class NetworkManager {
         receiveTimeout: const Duration(seconds: 30),
       );
 
-  Map<String, dynamic>? get _headers {}
+  Map<String, dynamic>? get _headers {
+    return {
+      'X-RapidAPI-Key': Env.apiKey,
+      'X-RapidAPI-Host': Env.apiHost,
+    };
+  }
 }
