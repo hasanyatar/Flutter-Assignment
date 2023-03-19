@@ -17,14 +17,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //Text('${Env.baseUrl}'),
     return BlocProvider<TitlesBloc>(
       create: (context) =>
           injector<TitlesBloc>()..add(GetTitles(filters: const TitlesRequest(page: 1))),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Movies List'),
-          // ignore: prefer_const_literals_to_create_immutables
         ),
         body: Column(
           children: [
