@@ -8,20 +8,52 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    //Text('${Env.baseUrl}'),
+    return BlocProvider<TitlesBloc>(
+      create: (context) =>
+          injector<TitlesBloc>()..add(GetTitles(filters: const TitlesRequest(page: 1))),
+      child: Scaffold(
         appBar: AppBar(
-          title: const Text('Home Page'),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: () {
-                context.router.push(DetailsRoute());
-              },
+          title: const Text('Movies List'),
+          // ignore: prefer_const_literals_to_create_immutables
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: Center(
+                child: BlocBuilder<TitlesBloc, TitlesState>(
+                  builder: (context, state) {
+                    if (state is TitlesLoading) {
+                      return Lottie.asset(
+                        LottieTypes.loading.fullPath,
+                        repeat: true,
+                        width: 0.4.sw,
+                        fit: BoxFit.fitWidth,
+                      );
+                    } else if (state is TitlesLoaded) {
+                      return TitlesListBuilder(titles: state.titles);
+                    } else if (state is UpdatedTitles) {
+                      return TitlesListBuilder(titles: state.titles);
+                    } else if (state is TitlesEmpty) {
+                      return const NoDataWidget();
+                    } else if (state is TitlesError) {
+                      return ErrorDialog(
+                          title: state.error?.response?.statusMessage ?? "",
+                          message: state.error?.message ?? "",
+                          onOkayPressed: () {
+                            // call again service to get data
+                            context.read<TitlesBloc>().add(GetTitles());
+                          });
+                    } else {
+                      return TitlesListBuilder(titles: state.titles);
+                    }
+                  },
+                ),
+              ),
             ),
           ],
         ),
-        body: Center(
-          child: Text('${Env.baseUrl}'),
-        ));
+      ),
+    );
   }
 }
