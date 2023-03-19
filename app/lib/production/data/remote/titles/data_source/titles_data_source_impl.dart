@@ -1,4 +1,6 @@
+import 'package:app/production/data/models/request/titles/titles_request.dart';
 import 'package:app/production/data/models/response/results/results.dart';
+import 'package:app/production/data/models/response/results/title_results.dart';
 import 'package:app/production/data/models/response/titles/titles.dart';
 import 'package:app/production/data/remote/titles/service/titles_service.dart';
 
@@ -10,12 +12,12 @@ class TitlesDataSourceImpl implements TitlesDataSource {
   TitlesDataSourceImpl({required this.titlesService});
 
   @override
-  Future<Results> getById(String id) async {
-    return await titlesService.getById(id);
-  }
+  Future<TitleResults?> getById(String id) async => (await titlesService.getById(id))?.titleResults;
 
   @override
-  Future<Titles> getList() async {
-    return await titlesService.getList();
+  Future<List<TitleResults>?> getList({TitlesRequest? filters}) async {
+    filters ??= const TitlesRequest(page: 1);
+
+    return (await titlesService.getList(filters))?.results;
   }
 }
