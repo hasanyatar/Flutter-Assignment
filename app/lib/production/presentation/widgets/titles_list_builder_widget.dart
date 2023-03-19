@@ -64,19 +64,14 @@ class TitlesListBuilder extends StatelessWidget {
   }
 
   StatefulWidget _buildLeadingOfTile(BuildContext context, String? image) {
-    if (image == null) {
+    return Image.network(image ?? "", width: 55.w, fit: BoxFit.fitWidth,
+        errorBuilder: (context, error, stackTrace) {
       return SvgPicture.asset(
         SvgImageTypes.noImage.fullPath,
         width: 55.w,
         fit: BoxFit.fitWidth,
         color: Theme.of(context).primaryColor,
       );
-    } else {
-      return Image.network(
-        image,
-        width: 55.w,
-        fit: BoxFit.fitWidth,
-      );
-    }
+    });
   }
 }

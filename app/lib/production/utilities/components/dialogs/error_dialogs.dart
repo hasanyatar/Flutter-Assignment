@@ -21,7 +21,7 @@ class ErrorDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = isDarkMode(context)
         ? const Color.fromARGB(255, 104, 62, 39)
-        : Color.fromARGB(255, 247, 247, 246);
+        : const Color.fromARGB(255, 247, 247, 246);
     final platformDialog = Platform.isIOS ? _iosDialog(context) : _androidDialog(context, color);
 
     return platformDialog;
