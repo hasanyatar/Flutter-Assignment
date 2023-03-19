@@ -17,7 +17,7 @@ migrate_working_dir/
 .idea/
 
 # Env files 
-.env
+*.env
 env.dart
 env.g.dart
 
