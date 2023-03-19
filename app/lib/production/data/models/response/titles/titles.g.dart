@@ -7,7 +7,7 @@ part of 'titles.dart';
 // **************************************************************************
 
 _$_Titles _$$_TitlesFromJson(Map<String, dynamic> json) => _$_Titles(
-      page: json['page'] as int?,
+      page: json['page'] as String?,
       next: json['next'] as String?,
       titleType: json['entries'] as int?,
       results: (json['results'] as List<dynamic>?)

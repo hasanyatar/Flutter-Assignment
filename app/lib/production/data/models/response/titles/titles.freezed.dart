@@ -21,7 +21,7 @@ Titles _$TitlesFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Titles {
   @JsonKey(name: 'page')
-  int? get page => throw _privateConstructorUsedError;
+  String? get page => throw _privateConstructorUsedError;
   @JsonKey(name: 'next')
   String? get next => throw _privateConstructorUsedError;
   @JsonKey(name: 'entries')
@@ -40,7 +40,7 @@ abstract class $TitlesCopyWith<$Res> {
       _$TitlesCopyWithImpl<$Res, Titles>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'page') int? page,
+      {@JsonKey(name: 'page') String? page,
       @JsonKey(name: 'next') String? next,
       @JsonKey(name: 'entries') int? titleType,
       @JsonKey(name: 'results') List<TitleResults>? results});
@@ -68,7 +68,7 @@ class _$TitlesCopyWithImpl<$Res, $Val extends Titles>
       page: freezed == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       next: freezed == next
           ? _value.next
           : next // ignore: cast_nullable_to_non_nullable
@@ -92,7 +92,7 @@ abstract class _$$_TitlesCopyWith<$Res> implements $TitlesCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'page') int? page,
+      {@JsonKey(name: 'page') String? page,
       @JsonKey(name: 'next') String? next,
       @JsonKey(name: 'entries') int? titleType,
       @JsonKey(name: 'results') List<TitleResults>? results});
@@ -117,7 +117,7 @@ class __$$_TitlesCopyWithImpl<$Res>
       page: freezed == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       next: freezed == next
           ? _value.next
           : next // ignore: cast_nullable_to_non_nullable
@@ -149,7 +149,7 @@ class _$_Titles implements _Titles {
 
   @override
   @JsonKey(name: 'page')
-  final int? page;
+  final String? page;
   @override
   @JsonKey(name: 'next')
   final String? next;
@@ -205,7 +205,7 @@ class _$_Titles implements _Titles {
 
 abstract class _Titles implements Titles {
   const factory _Titles(
-      {@JsonKey(name: 'page') final int? page,
+      {@JsonKey(name: 'page') final String? page,
       @JsonKey(name: 'next') final String? next,
       @JsonKey(name: 'entries') final int? titleType,
       @JsonKey(name: 'results') final List<TitleResults>? results}) = _$_Titles;
@@ -214,7 +214,7 @@ abstract class _Titles implements Titles {
 
   @override
   @JsonKey(name: 'page')
-  int? get page;
+  String? get page;
   @override
   @JsonKey(name: 'next')
   String? get next;

@@ -7,7 +7,7 @@ part 'titles.freezed.dart';
 @freezed
 class Titles with _$Titles {
   const factory Titles({
-    @JsonKey(name: 'page') int? page,
+    @JsonKey(name: 'page') String? page,
     @JsonKey(name: 'next') String? next,
     @JsonKey(name: 'entries') int? titleType,
     @JsonKey(name: 'results') List<TitleResults>? results,

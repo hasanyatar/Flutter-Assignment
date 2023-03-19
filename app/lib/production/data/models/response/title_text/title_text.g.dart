@@ -7,11 +7,11 @@ part of 'title_text.dart';
 // **************************************************************************
 
 TitleText _$TitleTextFromJson(Map<String, dynamic> json) => TitleText(
-      day: json['text'] as String?,
+      text: json['text'] as String?,
       typeName: json['__typename'] as String?,
     );
 
 Map<String, dynamic> _$TitleTextToJson(TitleText instance) => <String, dynamic>{
-      'text': instance.day,
+      'text': instance.text,
       '__typename': instance.typeName,
     };

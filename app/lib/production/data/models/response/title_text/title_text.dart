@@ -4,11 +4,11 @@ part 'title_text.g.dart';
 @JsonSerializable()
 class TitleText {
   @JsonKey(name: 'text')
-  final String? day;
+  final String? text;
   @JsonKey(name: '__typename')
   final String? typeName;
 
-  TitleText({this.day, this.typeName});
+  TitleText({this.text, this.typeName});
 
   factory TitleText.fromJson(Map<String, dynamic> json) => _$TitleTextFromJson(json);
 
