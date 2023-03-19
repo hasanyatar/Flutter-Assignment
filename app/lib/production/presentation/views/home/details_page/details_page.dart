@@ -52,31 +52,23 @@ class HeaderImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: imageUrl == null
-          ? Container(
-              width: 1.sw,
-              color: Colors.black,
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 50.h),
-                child: SvgPicture.asset(
-                  SvgImageTypes.noImage.fullPath,
-                  color: Theme.of(context).primaryColor,
-                  height: 0.3.sh,
-                  fit: BoxFit.fitHeight,
-                ),
-              ),
-            )
-          : Container(
-              width: 1.sw,
-              color: Colors.black,
-              child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 50.h),
-                  child: Image.network(
-                    imageUrl ?? "",
-                    height: 0.3.sh,
-                    fit: BoxFit.fitHeight,
-                  )),
-            ),
+      width: 1.sw,
+      color: Colors.black,
+      child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 50.h),
+          child: Image.network(
+            imageUrl ?? "",
+            height: 0.3.sh,
+            fit: BoxFit.fitHeight,
+            errorBuilder: (context, exception, stackTrace) {
+              return SvgPicture.asset(
+                SvgImageTypes.noImage.fullPath,
+                color: Theme.of(context).primaryColor,
+                height: 0.3.sh,
+                fit: BoxFit.fitHeight,
+              );
+            },
+          )),
     );
   }
 }
