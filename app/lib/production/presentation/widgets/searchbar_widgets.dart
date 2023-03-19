@@ -49,6 +49,12 @@ class SearchBarWidget extends StatelessWidget {
   }
 
   void _onchangedTextField(value) {
+    if (value.isNotEmpty) {
+      injector<TitlesBloc>().add(UpdatedTitles(filter: value));
+    } else {
+      final bloc = injector<TitlesBloc>();
+      bloc.add(GetTitles(filters: bloc.filters));
+    }
   }
 
   Padding _buildSuffixIconOfTextfield(BuildContext context) {

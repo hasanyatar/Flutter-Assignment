@@ -18,9 +18,11 @@ class TitlesBloc extends Bloc<TitlesEvent, TitlesState> {
 
   final TitlesUsecase _titlesUseCase;
   List<TitleResults> _titles = [];
+  TitlesRequest? filters;
 
   Future<void> _getTitles(GetTitles event, Emitter<TitlesState> emit) async {
     emit(TitlesLoading());
+    filters = event.filters;
 
     final titles = await _titlesUseCase.getList(filters: filters);
     titles.fold((exception) {
@@ -35,6 +37,26 @@ class TitlesBloc extends Bloc<TitlesEvent, TitlesState> {
     });
   }
 
+  Future<void> _updatedTitles(UpdatedTitles event, Emitter<TitlesState> emit) async {
+    await Future.delayed(const Duration(milliseconds: 300));
+    try {
+      final searchResults = _generateFilter(event);
+      searchResults.isEmpty ? emit(TitlesEmpty()) : emit(TitlesLoaded(searchResults));
+    } catch (error) {
+      emit(TitlesEmpty());
+    }
+  }
+
+  List<TitleResults> _generateFilter(UpdatedTitles event) {
+    final searchResults = <TitleResults>[];
+    for (var titles in _titles) {
+      final text = titles.titleText?.text?.toLowerCase();
+      if (text?.isNotEmpty == true && text!.startsWith(event.filter.toLowerCase())) {
+        searchResults.add(titles);
+      }
+    }
+    return searchResults;
+  }
 
   Future<void> _getTitleById(GetTitleById event, Emitter<TitlesState> emit) async {
     emit(TitlesLoading());

@@ -1,7 +1,14 @@
-import 'package:app/config/env.dart';
-import 'package:app/production/utilities/routes/app_router.dart';
-import 'package:auto_route/auto_route.dart';
+import 'package:app/injection/injection.dart';
+import 'package:app/production/data/models/request/titles/titles_request.dart';
+import 'package:app/production/presentation/blocs/titles_bloc/titles_bloc.dart';
+import 'package:app/production/presentation/widgets/searchbar_widgets.dart';
+import 'package:app/production/presentation/widgets/titles_list_builder_widget.dart';
+import 'package:app/production/utilities/components/dialogs/error_dialogs.dart';
+import 'package:app/production/utilities/types/lottie_types.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -19,6 +26,7 @@ class HomePage extends StatelessWidget {
         ),
         body: Column(
           children: [
+            const SearchBarWidget(hasSuffixIcon: true),
             Expanded(
               child: Center(
                 child: BlocBuilder<TitlesBloc, TitlesState>(
