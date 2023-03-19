@@ -1,9 +1,11 @@
 import 'package:app/injection/injection.dart';
 import 'package:app/production/data/models/request/titles/titles_request.dart';
 import 'package:app/production/presentation/blocs/titles_bloc/titles_bloc.dart';
+import 'package:app/production/presentation/widgets/nodata_widget.dart';
 import 'package:app/production/presentation/widgets/searchbar_widgets.dart';
 import 'package:app/production/presentation/widgets/titles_list_builder_widget.dart';
 import 'package:app/production/utilities/components/dialogs/error_dialogs.dart';
+import 'package:app/production/utilities/components/dialogs/no_internet_dialog.dart';
 import 'package:app/production/utilities/types/lottie_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,6 +46,10 @@ class HomePage extends StatelessWidget {
                       return TitlesListBuilder(titles: state.titles);
                     } else if (state is TitlesEmpty) {
                       return const NoDataWidget();
+                    } else if (state is NoInternetConnection) {
+                      return NoInternetDialog(onPressed: () {
+                        context.read<TitlesBloc>().add(GetTitles());
+                      });
                     } else if (state is TitlesError) {
                       return ErrorDialog(
                           title: state.error?.response?.statusMessage ?? "",

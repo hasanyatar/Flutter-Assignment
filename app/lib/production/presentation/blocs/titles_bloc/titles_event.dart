@@ -13,3 +13,7 @@ class GetTitleById extends TitlesEvent {
   GetTitleById(this.id);
 }
 
+class UpdatedTitles extends TitlesEvent {
+  final String filter;
+  UpdatedTitles({required this.filter});
+}

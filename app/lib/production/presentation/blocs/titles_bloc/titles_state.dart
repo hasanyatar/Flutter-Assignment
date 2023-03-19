@@ -15,6 +15,7 @@ class TitlesLoading extends TitlesState {}
 
 class TitlesEmpty extends TitlesState {}
 
+class NoInternetConnection extends TitlesState {}
 
 class TitlesLoaded extends TitlesState {
   const TitlesLoaded(List<TitleResults> titles) : super(titles: titles);
