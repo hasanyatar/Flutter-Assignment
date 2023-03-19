@@ -34,6 +34,8 @@ class MyApp extends StatelessWidget {
           routeInformationParser: _appRouter.defaultRouteParser(),
           debugShowCheckedModeBanner: false,
           title: 'Flutter Assignment',
+          theme: MyThemeData().lightThemeData(context),
+          darkTheme: MyThemeData().darkThemeData(context),
           builder: (context, child) {
             return MediaQuery(
               data: MediaQuery.of(context).copyWith(textScaleFactor: TextConfig.textScaleFactor),
