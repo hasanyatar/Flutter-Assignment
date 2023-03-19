@@ -55,21 +55,4 @@ I used rapidapi on the service side. The database I am using is MoviesDatabase. 
     
 </table>
 
-<h2>Create Account Page</h2>
-<table border="1">
-    <tr>
-        <td>
-             <img src="light/create_account.png" >
-        </td>
-        <td>
-            <img src="light/select_profile_photo.png" >
-        </td>
-        <td>
-            <img src="light/create_account_video.gif" >
-        </td>
-    </tr>
-</table>
-<h2>Home Page</h2>
-<p align="left">
-    <img width="350" src="light/home_page.gif"  >
-</p>
+
