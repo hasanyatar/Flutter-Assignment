@@ -1,3 +1,4 @@
+import 'package:app/production/data/models/request/titles/titles_request.dart';
 import 'package:app/production/data/models/response/results/results.dart';
 import 'package:app/production/data/models/response/titles/titles.dart';
 import 'package:retrofit/http.dart';
@@ -10,8 +11,8 @@ abstract class TitlesService {
   factory TitlesService(Dio dio, {String baseUrl}) = _TitlesService;
 
   @GET('/titles')
-  Future<Titles> getList();
+  Future<Titles?> getList(@Queries() TitlesRequest? request);
 
   @GET('/titles/{id}')
-  Future<Results> getById(@Path('id') String id);
+  Future<Results?> getById(@Path('id') String id);
 }

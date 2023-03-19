@@ -19,13 +19,15 @@ class _TitlesService implements TitlesService {
   String? baseUrl;
 
   @override
-  Future<Titles> getList() async {
+  Future<Titles?> getList(request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.addAll(request?.toJson() ?? <String, dynamic>{});
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Titles>(Options(
+        await _dio.fetch<Map<String, dynamic>?>(_setStreamType<Titles>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -37,18 +39,18 @@ class _TitlesService implements TitlesService {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = Titles.fromJson(_result.data!);
+    final value = _result.data == null ? null : Titles.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<Results> getById(id) async {
+  Future<Results?> getById(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Results>(Options(
+        await _dio.fetch<Map<String, dynamic>?>(_setStreamType<Results>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -60,7 +62,7 @@ class _TitlesService implements TitlesService {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = Results.fromJson(_result.data!);
+    final value = _result.data == null ? null : Results.fromJson(_result.data!);
     return value;
   }
 
