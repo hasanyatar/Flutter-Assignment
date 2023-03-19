@@ -2,6 +2,8 @@
 
 I used rapidapi on the service side. The database I am using is MoviesDatabase. API key. Base url ... is encrypted with dotenv.
 
+The video file contains the video of the application. :)
+
 <h1>Movie Light Theme</h1>
 <table border="0">
     <tr>
