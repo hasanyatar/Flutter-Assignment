@@ -1,9 +1,12 @@
 import 'package:app/config/env.dart';
+import 'package:app/core/network/interceptors/error_interceptor.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class NetworkManager {
-  final String _baseUrl = Env.baseUrl;
+  final String _baseUrl = dotenv.env['BASE_URL'] ?? "";
 
   Dio get service => _dio;
   late final Dio _dio;
@@ -11,6 +14,7 @@ class NetworkManager {
   NetworkManager() {
     _dio = Dio(_myBaseOptions());
     _dio.interceptors.add(_prettyDioLogger);
+    _dio.interceptors.add(ErrorInterceptor());
   }
 
   static const int _maxLineWidth = 90;
@@ -68,8 +72,8 @@ class NetworkManager {
 
   Map<String, dynamic>? get _headers {
     return {
-      'X-RapidAPI-Key': Env.apiKey,
-      'X-RapidAPI-Host': Env.apiHost,
+      'X-RapidAPI-Key': dotenv.env['API_KEY'],
+      'X-RapidAPI-Host': dotenv.env['API_HOST'],
     };
   }
 }
