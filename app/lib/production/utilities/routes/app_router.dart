@@ -1,3 +1,4 @@
+import 'package:app/production/data/models/response/results/title_results.dart';
 import 'package:app/production/presentation/views/home/details_page/details_page.dart';
 import 'package:app/production/presentation/views/home/home_page/home_page.dart';
 import 'package:auto_route/auto_route.dart';
@@ -9,7 +10,7 @@ part 'app_router.gr.dart';
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
     AutoRoute(page: HomePage, path: '/', initial: true),
-    AutoRoute(page: DetailsPage, path: '/details-page'),
+    AutoRoute(page: DetailsPage, path: '/details-page/'),
   ],
 )
 class AppRouter extends _$AppRouter {}

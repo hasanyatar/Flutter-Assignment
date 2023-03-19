@@ -18,19 +18,19 @@ class _$AppRouter extends RootStackRouter {
   @override
   final Map<String, PageFactory> pagesMap = {
     HomeRoute.name: (routeData) {
-      final args =
-          routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: HomePage(key: args.key),
+        child: const HomePage(),
       );
     },
     DetailsRoute.name: (routeData) {
-      final args = routeData.argsAs<DetailsRouteArgs>(
-          orElse: () => const DetailsRouteArgs());
+      final args = routeData.argsAs<DetailsRouteArgs>();
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: DetailsPage(key: args.key),
+        child: DetailsPage(
+          key: args.key,
+          title: args.title,
+        ),
       );
     },
   };
@@ -43,55 +43,53 @@ class _$AppRouter extends RootStackRouter {
         ),
         RouteConfig(
           DetailsRoute.name,
-          path: '/details-page',
+          path: '/details-page/',
         ),
       ];
 }
 
 /// generated route for
 /// [HomePage]
-class HomeRoute extends PageRouteInfo<HomeRouteArgs> {
-  HomeRoute({dynamic key})
+class HomeRoute extends PageRouteInfo<void> {
+  const HomeRoute()
       : super(
           HomeRoute.name,
           path: '/',
-          args: HomeRouteArgs(key: key),
         );
 
   static const String name = 'HomeRoute';
 }
 
-class HomeRouteArgs {
-  const HomeRouteArgs({this.key});
-
-  final dynamic key;
-
-  @override
-  String toString() {
-    return 'HomeRouteArgs{key: $key}';
-  }
-}
-
 /// generated route for
 /// [DetailsPage]
 class DetailsRoute extends PageRouteInfo<DetailsRouteArgs> {
-  DetailsRoute({dynamic key})
-      : super(
+  DetailsRoute({
+    Key? key,
+    required TitleResults title,
+  }) : super(
           DetailsRoute.name,
-          path: '/details-page',
-          args: DetailsRouteArgs(key: key),
+          path: '/details-page/',
+          args: DetailsRouteArgs(
+            key: key,
+            title: title,
+          ),
         );
 
   static const String name = 'DetailsRoute';
 }
 
 class DetailsRouteArgs {
-  const DetailsRouteArgs({this.key});
+  const DetailsRouteArgs({
+    this.key,
+    required this.title,
+  });
 
-  final dynamic key;
+  final Key? key;
+
+  final TitleResults title;
 
   @override
   String toString() {
-    return 'DetailsRouteArgs{key: $key}';
+    return 'DetailsRouteArgs{key: $key, title: $title}';
   }
 }
